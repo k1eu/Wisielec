@@ -10,11 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var odpowiedzi : [String] = ["Gruszka","Rózia","Tattoo"]
+    var szukanaOdpowiedz : String = ""
+    @IBOutlet var litery: [UIButton]!
+    
+    func losowanie() {
+        var random = Int.random(in: 0...odpowiedzi.count-1)
+        szukanaOdpowiedz = odpowiedzi[random]
+        print(szukanaOdpowiedz)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        losowanie()
     }
 
-
+    @IBAction func literaPressed(_ sender: UIButton) {
+        switch sender.currentTitle {
+        default:
+            print("Winter is coming")
+        }
+    }
+    
 }
 
