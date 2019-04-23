@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         UIImage(named: "eighth")!,
         UIImage(named: "nineth")!
     ]
+    var polskieZnaki = ["Ą","Ć","Ę","Ł","Ń","Ó","Ś","Ź","Ż"]
     var stackView = UIStackView()
     @IBOutlet var litery: [UIButton]!
     
@@ -35,10 +36,18 @@ class ViewController: UIViewController {
     
     func ustawianieButtonow (button:[UIButton]) {
         for every in button {
+            if polskieZnaki.contains(every.titleLabel!.text!) {
+                every.titleLabel!.font = every.titleLabel!.font.withSize(10)
+                every.setTitleColor(UIColor(red: 255, green: 182, blue: 193, alpha: 1), for: .normal)
+                
+            }
+            else {
             every.titleLabel!.font = every.titleLabel!.font.withSize(15)
             every.setTitleColor(.white, for: .normal)
             every.setTitleShadowColor(UIColor(red: 255, green: 255, blue: 255, alpha: 0.5), for: .normal)
+            }
         }
+        
     }
     
     func guess(button:UIButton) {
@@ -140,9 +149,40 @@ class ViewController: UIViewController {
             stackView.arrangedSubviews[every].isHidden = true
         }
     }
+    func czyWygrałeś(stack:UIStackView)->Bool {
+        let wielkoscStacka = stack.arrangedSubviews.count
+        var placeholder : Int = 0
+        for every in stack.arrangedSubviews {
+            if every.isHidden == false {
+                placeholder += 1
+                print("yes")
+            }
+            else {
+                print("no")
+            }
+        }
+        if placeholder == wielkoscStacka {
+            print("YOU WON111111!!!")
+            return true
+            
+        }
+        else {
+            print("still not win")
+            return false
+        }
+        
+    }
 
     @IBAction func literaPressed(_ sender: UIButton) {
         let xd : Bool = czyPrzegrałeś(tablica: hangman, licznikBledow: licznikBledow)
+        let dx : Bool = czyWygrałeś(stack: stackView)
+        if dx {
+            print("ONCEAGAIN U WONNNNN")
+            for every in litery {
+                every.isHidden = true
+            }
+        }
+        else {
         switch xd {
         case true:
             print("The End")
@@ -161,7 +201,7 @@ class ViewController: UIViewController {
         }
         
     }
-    
+    }
 }
 
 extension UIImageView {
