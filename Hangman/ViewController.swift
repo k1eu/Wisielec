@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         UIImage(named: "eighth")!,
         UIImage(named: "nineth")!
     ]
+    var stackView = UIStackView()
     @IBOutlet var litery: [UIButton]!
     
     func losowanie() {
@@ -34,7 +35,7 @@ class ViewController: UIViewController {
     
     func ustawianieButtonow (button:[UIButton]) {
         for every in button {
-            every.titleLabel!.font.withSize(20)
+            every.titleLabel!.font = every.titleLabel!.font.withSize(15)
             every.setTitleColor(.white, for: .normal)
             every.setTitleShadowColor(UIColor(red: 255, green: 255, blue: 255, alpha: 0.5), for: .normal)
         }
@@ -44,6 +45,18 @@ class ViewController: UIViewController {
         let xd = button.titleLabel!.text?.first?.lowercased()
         if szukanaOdpowiedz.lowercased().contains(xd!){
             print("zgadłeś")
+            let lol = stackView.arrangedSubviews.count
+            var array = [Int]()
+            for index in 0..<lol {
+                let pol = stackView.arrangedSubviews[index] as! UILabel
+                if pol.text?.lowercased() == xd {
+                    array.append(index)
+                }
+                else {continue}
+            }
+            for every in array {
+                stackView.arrangedSubviews[every].isHidden = false
+            }
         }
         else {
             print("pudło")
@@ -58,8 +71,8 @@ class ViewController: UIViewController {
         
         
     }
+    
     func slowoNaLitery (odpowiedz : String) {
-        let stackView = UIStackView()
         
         let liczbaLiter = odpowiedz.count
     for every in 1...liczbaLiter {
@@ -122,6 +135,10 @@ class ViewController: UIViewController {
         losowanie()
         ustawianieButtonow(button: litery)
         slowoNaLitery(odpowiedz: szukanaOdpowiedz)
+        let pl = stackView.arrangedSubviews.count
+        for every in 0...pl-1 {
+            stackView.arrangedSubviews[every].isHidden = true
+        }
     }
 
     @IBAction func literaPressed(_ sender: UIButton) {
