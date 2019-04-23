@@ -66,6 +66,13 @@ class ViewController: UIViewController {
             for every in array {
                 stackView.arrangedSubviews[every].isHidden = false
             }
+            let czy = czyWygrałeś(stack: stackView)
+            if czy{
+                for every in litery {
+                    every.isHidden = true
+                }
+            }
+            
         }
         else {
             print("pudło")
@@ -176,13 +183,7 @@ class ViewController: UIViewController {
     @IBAction func literaPressed(_ sender: UIButton) {
         let xd : Bool = czyPrzegrałeś(tablica: hangman, licznikBledow: licznikBledow)
         let dx : Bool = czyWygrałeś(stack: stackView)
-        if dx {
-            print("ONCEAGAIN U WONNNNN")
-            for every in litery {
-                every.isHidden = true
-            }
-        }
-        else {
+        
         switch xd {
         case true:
             print("The End")
@@ -200,7 +201,7 @@ class ViewController: UIViewController {
             guess(button: sender)
         }
         
-    }
+    
     }
 }
 
