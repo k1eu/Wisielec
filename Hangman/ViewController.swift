@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         UIImage(named: "nineth")!
     ]
     var polskieZnaki = ["Ą","Ć","Ę","Ł","Ń","Ó","Ś","Ź","Ż"]
+    var szukanaWZnakach : [String] = []
     var stackView = UIStackView()
     @IBOutlet var litery: [UIButton]!
     
@@ -32,6 +33,16 @@ class ViewController: UIViewController {
         let random = Int.random(in: 0...odpowiedzi.count-1)
         szukanaOdpowiedz = odpowiedzi[random]
         print(szukanaOdpowiedz)
+        let liczenie = szukanaOdpowiedz.count
+        for every in 0...liczenie-1 {
+            if every == 0 {
+                let index = szukanaOdpowiedz.startIndex
+                szukanaWZnakach.append(String(szukanaOdpowiedz.first!))
+            }
+            else {
+            let indexZnaku = szukanaOdpowiedz.index(szukanaOdpowiedz.startIndex,offsetBy: every)
+                szukanaWZnakach.append(String(szukanaOdpowiedz[indexZnaku])) }
+        }
     }
     
     func ustawianieButtonow (button:[UIButton]) {
@@ -58,13 +69,14 @@ class ViewController: UIViewController {
             var array = [Int]()
             for index in 0..<lol {
                 let pol = stackView.arrangedSubviews[index] as! UILabel
-                if pol.text?.lowercased() == xd {
+                if szukanaWZnakach[index].lowercased() == xd {
                     array.append(index)
                 }
                 else {continue}
             }
             for every in array {
-                stackView.arrangedSubviews[every].isHidden = false
+                let stack = stackView.arrangedSubviews[every] as! UILabel
+                stack.text = szukanaWZnakach[every]
             }
             let czy = czyWygrałeś(stack: stackView)
             if czy{
@@ -98,6 +110,7 @@ class ViewController: UIViewController {
         
             view.addSubview(pole)
         ustawLabele(label: pole, liczba: every, odpowiedz: odpowiedz)
+        pole.text = "_"
             stackView.addArrangedSubview(pole)
         }
         view.addSubview(stackView)
@@ -106,12 +119,8 @@ class ViewController: UIViewController {
     }
     func ustawLabele(label: UILabel,liczba : Int, odpowiedz : String) {
         label.translatesAutoresizingMaskIntoConstraints = false
-        let indexZnaku = odpowiedz.index(odpowiedz.startIndex,offsetBy: liczba-1)
-        label.text = String(odpowiedz[indexZnaku])
         label.textColor = .red
         label.textAlignment = .center
-     //   label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-   //     label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: CGFloat(100*liczba)).isActive = true
         label.widthAnchor.constraint(equalToConstant: 40).isActive = true
         label.heightAnchor.constraint(equalToConstant: 40).isActive = true
         label.font = label.font.withSize(40)
@@ -152,15 +161,16 @@ class ViewController: UIViewController {
         ustawianieButtonow(button: litery)
         slowoNaLitery(odpowiedz: szukanaOdpowiedz)
         let pl = stackView.arrangedSubviews.count
-        for every in 0...pl-1 {
+      /*  for every in 0...pl-1 {
             stackView.arrangedSubviews[every].isHidden = true
-        }
+        } */
     }
     func czyWygrałeś(stack:UIStackView)->Bool {
         let wielkoscStacka = stack.arrangedSubviews.count
         var placeholder : Int = 0
-        for every in stack.arrangedSubviews {
-            if every.isHidden == false {
+        for every in 0...wielkoscStacka-1 {
+            let stacker = stack.arrangedSubviews[every] as! UILabel
+            if stacker.text == szukanaWZnakach[every] {
                 placeholder += 1
                 print("yes")
             }
