@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		110394AF227122B900E208D9 /* setups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110394AE227122B900E208D9 /* setups.swift */; };
+		110394B1227127F600E208D9 /* core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110394B0227127F600E208D9 /* core.swift */; };
 		111114FF226DA671003A1D00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 111114FE226DA671003A1D00 /* AppDelegate.swift */; };
 		11111501226DA671003A1D00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11111500226DA671003A1D00 /* ViewController.swift */; };
 		11111504226DA671003A1D00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11111502226DA671003A1D00 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		110394AE227122B900E208D9 /* setups.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setups.swift; sourceTree = "<group>"; };
+		110394B0227127F600E208D9 /* core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = core.swift; sourceTree = "<group>"; };
 		111114FB226DA671003A1D00 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		111114FE226DA671003A1D00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11111500226DA671003A1D00 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 				11111505226DA673003A1D00 /* Assets.xcassets */,
 				11111507226DA673003A1D00 /* LaunchScreen.storyboard */,
 				1111150A226DA673003A1D00 /* Info.plist */,
+				110394AE227122B900E208D9 /* setups.swift */,
+				110394B0227127F600E208D9 /* core.swift */,
 			);
 			path = Hangman;
 			sourceTree = "<group>";
@@ -137,6 +143,8 @@
 			files = (
 				11111501226DA671003A1D00 /* ViewController.swift in Sources */,
 				111114FF226DA671003A1D00 /* AppDelegate.swift in Sources */,
+				110394B1227127F600E208D9 /* core.swift in Sources */,
+				110394AF227122B900E208D9 /* setups.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
