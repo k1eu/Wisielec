@@ -73,6 +73,11 @@ class ViewController: UIViewController {
                 for every in litery {
                     every.isHidden = true
                 }
+                let youWon = UILabel()
+                
+                view.addSubview(youWon)
+                ustawianie.ustawWin(label:youWon,view:view,tekscik:"Gratulacje, Wygrałeś")
+                
             }
             
         }
@@ -91,6 +96,11 @@ class ViewController: UIViewController {
                     every.isEnabled = false
                     every.isHidden = true
                 }
+                
+                let youLoose = UILabel()
+                
+                view.addSubview(youLoose)
+                ustawianie.ustawWin(label:youLoose,view:view,tekscik:"Niestety, Przegrałeś!")
                }
         }
         

@@ -58,4 +58,18 @@ class SetUps {
         
         
     }
+    
+    func ustawWin(label:UILabel, view:UIView, tekscik: String) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = tekscik
+        label.font = label.font.withSize(40)
+        label.textAlignment = .center
+        label.numberOfLines = 2
+        label.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        label.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+       label.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100).isActive = true
+        label.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        label.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        label.textColor = .red
+    }
 }
