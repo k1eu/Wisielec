@@ -50,8 +50,10 @@ class SetUps {
         stack.alignment = .fill
         stack.distribution = .equalSpacing
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-        stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+      //  stack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 15).isActive = true
+      //  stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 20).isActive = true
+        stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
         
