@@ -41,7 +41,7 @@ class SetUps {
         label.textAlignment = .center
         label.widthAnchor.constraint(equalToConstant: 40).isActive = true
         label.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        label.font = label.font.withSize(40)
+        label.font = label.font.withSize(30)
         
     }
     func ustawStackView (stack:UIStackView, view:UIView) {
@@ -49,10 +49,9 @@ class SetUps {
         stack.axis = .horizontal
         stack.alignment = .fill
         stack.distribution = .equalSpacing
-        stack.translatesAutoresizingMaskIntoConstraints = false
       //  stack.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         stack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 15).isActive = true
-      //  stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 20).isActive = true
+        stack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: -20).isActive = true
         stack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         

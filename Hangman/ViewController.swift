@@ -12,8 +12,8 @@ class ViewController: UIViewController {
     
     var ustawianie = SetUps()
     var rdzen = Core()
-    
-    var odpowiedzi : [String] = ["Gruszka","Rózia","Tattoo"]
+    // supporting up to 7-char words
+    var odpowiedzi : [String] = ["Gruszkaa","Róziaaa","Tattooa"]
     var szukanaOdpowiedz : String = ""
     var licznikBledow = 0
     var hangman:[UIImage] = [
@@ -27,15 +27,27 @@ class ViewController: UIViewController {
         UIImage(named: "eighth")!,
         UIImage(named: "nineth")!
     ]
+    var słownik : [String] = []
     var polskieZnaki = ["Ą","Ć","Ę","Ł","Ń","Ó","Ś","Ź","Ż"]
     var szukanaWZnakach : [String] = []
     var przegrana : Bool = false
     var stackView = UIStackView()
     @IBOutlet var litery: [UIButton]!
     
+    let filePath = URL(fileURLWithPath: Bundle.main.path(forResource: "slownik", ofType: "txt")!)
+    func setSlownik() {
+        var dataa : String = ""
+        do {
+        dataa = try String(contentsOf: filePath , encoding: .utf8)
+        } catch let error as NSError {
+            print("Failed reading from URL: \(filePath), Error: " + error.localizedDescription)
+        }
+        słownik = dataa.components(separatedBy: "\n")
+        słownik = słownik.dropLast()
+    }
     func losowanie() {
-        let random = Int.random(in: 0...odpowiedzi.count-1)
-        szukanaOdpowiedz = odpowiedzi[random]
+        let random = Int.random(in: 0...słownik.count-1)
+        szukanaOdpowiedz = słownik[random]
         print(szukanaOdpowiedz)
         let liczenie = szukanaOdpowiedz.count
         for every in 0...liczenie-1 {
@@ -96,6 +108,13 @@ class ViewController: UIViewController {
                     every.isEnabled = false
                     every.isHidden = true
                 }
+                let liczba = stackView.arrangedSubviews.count
+                
+                for index in 0...liczba-1 {
+                    let access = stackView.arrangedSubviews[index] as! UILabel
+                    access.text = szukanaWZnakach[index]
+                }
+                
                 
                 let youLoose = UILabel()
                 
@@ -128,16 +147,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSlownik()
         losowanie()
         ustawianie.ustawianieButtonow(button: litery,polskieZnaki:polskieZnaki)
         slowoNaLitery(odpowiedz: szukanaOdpowiedz)
-        let pl = stackView.arrangedSubviews.count
+        
+        print(słownik)
     }
     
 
     @IBAction func literaPressed(_ sender: UIButton) {
         let dx : Bool = rdzen.czyWygrałeś(stack: stackView, szukanaWZnakach: szukanaWZnakach)
         guess(button: sender)
+        print(słownik)
     }
 }
 
