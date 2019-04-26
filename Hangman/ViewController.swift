@@ -9,11 +9,9 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
+    //setup variables
     var ustawianie = SetUps()
     var rdzen = Core()
-    // supporting up to 7-char words
-    var odpowiedzi : [String] = ["Gruszkaa","Róziaaa","Tattooa"]
     var szukanaOdpowiedz : String = ""
     var licznikBledow = 0
     var hangman:[UIImage] = [
@@ -32,9 +30,11 @@ class ViewController: UIViewController {
     var szukanaWZnakach : [String] = []
     var przegrana : Bool = false
     var stackView = UIStackView()
+    let filePath = URL(fileURLWithPath: Bundle.main.path(forResource: "slownik", ofType: "txt")!)
+    
+    // end of setup variables
     @IBOutlet var litery: [UIButton]!
     
-    let filePath = URL(fileURLWithPath: Bundle.main.path(forResource: "slownik", ofType: "txt")!)
     func setSlownik() {
         var dataa : String = ""
         do {
@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         słownik = dataa.components(separatedBy: "\n")
         słownik = słownik.dropLast()
     }
+    
     func losowanie() {
         let random = Int.random(in: 0...słownik.count-1)
         szukanaOdpowiedz = słownik[random]
@@ -60,8 +61,6 @@ class ViewController: UIViewController {
                 szukanaWZnakach.append(String(szukanaOdpowiedz[indexZnaku])) }
         }
     }
-    
-    
     
     func guess(button:UIButton) {
         let xd = button.titleLabel!.text?.first?.lowercased()
@@ -86,10 +85,8 @@ class ViewController: UIViewController {
                     every.isHidden = true
                 }
                 let youWon = UILabel()
-                
                 view.addSubview(youWon)
                 ustawianie.ustawWin(label:youWon,view:view,tekscik:"Gratulacje, Wygrałeś")
-                
             }
             
         }
@@ -114,21 +111,14 @@ class ViewController: UIViewController {
                     let access = stackView.arrangedSubviews[index] as! UILabel
                     access.text = szukanaWZnakach[index]
                 }
-                
-                
                 let youLoose = UILabel()
-                
                 view.addSubview(youLoose)
                 ustawianie.ustawWin(label:youLoose,view:view,tekscik:"Niestety, Przegrałeś!")
                }
         }
-        
-        
-        
     }
     
     func slowoNaLitery (odpowiedz : String) {
-        
         let liczbaLiter = odpowiedz.count
         for every in 1...liczbaLiter {
             let pole = UILabel()
@@ -142,9 +132,6 @@ class ViewController: UIViewController {
         print(stackView.subviews)
     }
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setSlownik()
@@ -154,7 +141,6 @@ class ViewController: UIViewController {
         
         print(słownik)
     }
-    
 
     @IBAction func literaPressed(_ sender: UIButton) {
         let dx : Bool = rdzen.czyWygrałeś(stack: stackView, szukanaWZnakach: szukanaWZnakach)
@@ -162,9 +148,6 @@ class ViewController: UIViewController {
         print(słownik)
     }
 }
-
-
-
 
 
 extension UIImageView {
