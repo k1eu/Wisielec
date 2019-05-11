@@ -62,7 +62,8 @@ class ViewController: UIViewController {
         }
     }
     
-    func guess(button:UIButton) {
+    
+    func guess(button:UIButton) {           //core function
         let xd = button.titleLabel!.text?.first?.lowercased()
         if szukanaOdpowiedz.lowercased().contains(xd!){
             print("zgadłeś")
